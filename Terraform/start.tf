@@ -71,6 +71,15 @@ resource "aws_eip" "eip_manager" {
   vpc      = true
 }
 
+resource "aws_ebs_volume" "Main_disk" {
+  size              = 5
+  availability_zone = "eu-north-1a"
+  type              = "gp2"
+  tags = {
+    Name = "root disk"
+  }
+}
+
 resource "aws_default_subnet" "default_az1" {
   availability_zone = data.aws_availability_zones.available.names[0]
 
