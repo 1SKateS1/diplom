@@ -66,7 +66,10 @@ resource "aws_launch_configuration" "web" {
     create_before_destroy = true
   }
 }
-
+resource "aws_eip" "eip_manager" {
+  instance = aws_instance.EC2-Instance.id
+  vpc      = true
+}
 
 resource "aws_default_subnet" "default_az1" {
   availability_zone = data.aws_availability_zones.available.names[0]
